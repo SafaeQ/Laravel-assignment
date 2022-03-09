@@ -1,8 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
+<div class="container " style= "background-color: #ff8f00">
+    <div class="container h-100" >
+
+    <div class="row justify-content-center h-100">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
@@ -17,7 +19,39 @@
                     {{ __('You are normal user!') }}
                 </div>
             </div>
+            <div class="row" style="margin-top: 5rem;">
+                <div class="col-lg-12 margin-tb">
+                    <div class="pull-left">
+                        <h2>CRUD</h2>
+                    </div>
+                </div>
+            </div>
+
+            <table class="table table-striped table-dark table-hover">
+                <tr>
+                    <th>id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th width="280px">Action</th>
+                </tr>
+                @foreach ($user as $key => $value)
+                <tr>
+                    <td>{{ $value->id }}</td>
+                    <td>{{ $value->name }}</td>
+                    <td>{{ ($value->email) }}</td>
+                    <td><a href="{{ route('user.edit', $value->id)}}" class="btn btn-primary">Edit</a></td>
+                    <td>
+                        <form action="{{ route('user.delete', $value->id)}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger" type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+             </table>
         </div>
     </div>
+</div>
 </div>
 @endsection
