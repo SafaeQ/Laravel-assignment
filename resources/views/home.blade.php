@@ -7,8 +7,10 @@
     <div class="row justify-content-center h-100">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">
+                        {{ __('Dashboard') }}
 
+                </div>
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -26,6 +28,9 @@
                     </div>
                 </div>
             </div>
+            <div class="pull-right">
+                <a href="{{ route('user.store')}}" class="btn btn-success"> Add User</a>
+            </div>
 
             <table class="table table-striped table-dark table-hover">
                 <tr>
@@ -41,7 +46,7 @@
                     <td>{{ ($value->email) }}</td>
                     <td><a href="{{ route('user.edit', $value->id)}}" class="btn btn-primary">Edit</a></td>
                     <td>
-                        <form action="{{ route('user.delete', $value->id)}}" method="post">
+                        <form action="{{ route('user.destroy', $value->id)}}" >
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger" type="submit">Delete</button>

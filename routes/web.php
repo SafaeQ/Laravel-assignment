@@ -18,8 +18,8 @@ Route::get('admin/home', [App\Http\Controllers\HomeController::class, 'adminHome
 // CRUD users routes
 
 Route::get('/home', [App\Http\Controllers\Controller::class, 'show'])->name('home');//
-Route::get('/users-create', [App\Http\Controllers\Controller::class, 'store'])->name('user.store');
+Route::get('/users-create', [App\Http\Controllers\Controller::class, 'create_user'])->name('user.store');
 Route::post('/users-create', [App\Http\Controllers\Controller::class, 'store']);
-Route::get('/users-edit', [App\Http\Controllers\Controller::class, 'edit'])->name('user.edit');
-Route::post('/users-edit', [App\Http\Controllers\Controller::class, 'update']);
-Route::delete('/users-delete', [App\Http\Controllers\Controller::class, 'delete'])->name('user.delete');
+Route::get('/users-edit/{id}', [App\Http\Controllers\Controller::class, 'edit'])->name('user.edit');
+Route::put('/users-edit/{id}', [App\Http\Controllers\Controller::class, 'update'])->name('user.update');
+Route::get('/users-delete/{id}', [App\Http\Controllers\Controller::class, 'destroy'])->name('user.destroy');

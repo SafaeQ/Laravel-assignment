@@ -18,38 +18,37 @@ class Controller extends BaseController
             return view('home', ['user'=>$user]);
         }
 
+    public function create_user(){
+            return view('create');
+        }
+
     public function store(Request $request){
-        $this->validate($request, [
-            'name' =>'required',
-            'email' =>'required',
-            'password' =>'required',
-        ]);
+        $user = new User;
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = $request->input('password');
+        $user->save();
 
-        User::create($request->all());
-        return redirect()->route('user.store')->with('success', 'created successfully');
+        return redirect()->route('home')->with('success', 'created successfully');
     }
 
-    public function edit(User $user){
-        return view('edit', ['user'=>$user]);
+    public function edit($id){
+        $user = User::find($id);
+        return view('edit',['user'=>$user]);
     }
 
 
-    public function update(Request $request, User $user){
+    public function update($id,Request $request){
 
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-        ]);
-
-        $user->update($request->all());
-        // $user->name = $request->get('name');
-        // $user->email = $request->get('email');
-        // $user->save();
-        return redirect()->route('user.edit',[$user->id])->with('success', 'updated successfully');
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+        return redirect()->route('home',['user'=>$user])->with('success', 'updated successfully');
     }
 
-    public function delete(User $user){
-        $user->delete();
-        return redirect()->route('user.delete')->with('success', 'deleted successfully');
+    public function destroy($id){
+        User::destroy($id);
+        return redirect()->route('home')->with('success', 'deleted successfully');
     }
 }

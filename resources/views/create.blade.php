@@ -36,7 +36,13 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>email:</strong>
-                <textarea class="form-control" style="height:150px" name="email" placeholder="Enter email"></textarea>
+                <input class="form-control" type='text' name="email" placeholder="Enter email">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>password:</strong>
+                <input class="form-control" type='password' name="password" placeholder="Enter password">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
