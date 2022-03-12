@@ -48,9 +48,9 @@ class LoginController extends Controller
         $fields = ($request->only('email', 'password'));
 
         if (auth()->attempt($fields, $request->remember)) {
-            if (auth()->user()->is_super_admin == 1) {
+            if (auth()->user()->role == 'superadmin') {
                 return redirect()->route('super.admin.home');
-            }elseif(auth()->user()->is_admin == 1) {
+            }elseif(auth()->user()->role == 'admin') {
                 return redirect()->route('admin.home');
             }else {
                 return redirect()->route('home');

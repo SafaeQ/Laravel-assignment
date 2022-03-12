@@ -16,9 +16,9 @@ class IsSuperAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->is_super_admin == 1) {
+        if (Auth::user() && Auth::user()->is_super_admin === 1) {
             return $next($request);
         }
-        return redirect('home')->with('error', 'oh oh');
+        return redirect('/')->with('error', 'oh oh');
     }
 }

@@ -28,10 +28,11 @@
                     </div>
                 </div>
             </div>
+            @if(Auth::user()->id === $user->superAdmin_id )
             <div class="pull-right">
                 <a href="{{ route('user.store')}}" class="btn btn-success"> Add User</a>
             </div>
-
+            @endif
             <table class="table table-striped table-dark table-hover">
                 <tr>
                     <th>id</th>

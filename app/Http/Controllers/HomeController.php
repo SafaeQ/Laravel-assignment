@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Auth;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +23,21 @@ class HomeController extends Controller
      */
     public function index()
     {
+        switch (Auth::user()->role) {
+            case 'super_admin':
+                return redirect()->route('named_route');
+                break;
+            case 'admin':
+                return redirect()->route('named_route');
+                break;
+            case 'user':
+                return redirect()->route('named_route');
+                break;
+
+            default:
+                # code...
+                break;
+        }
         return view('home');
     }
     public function superAdminHome(){
