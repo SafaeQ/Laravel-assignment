@@ -14,6 +14,7 @@ Route::get('super_admin/home', [App\Http\Controllers\HomeController::class, 'sup
 Route::get('admin/home', [App\Http\Controllers\HomeController::class, 'adminHome'])->name('admin.home');
 
 // CRUD users routes
+
 Route::middleware(['auth','is_user'])->group(function () {
     Route::get('/home', [App\Http\Controllers\Controller::class, 'show'])->name('home');//
     Route::get('/users-create', [App\Http\Controllers\Controller::class, 'create_user'])->name('user.store');
